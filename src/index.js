@@ -103,14 +103,10 @@ function calculator(number = 0) {
 
     return {
         sum: (...rest) => {
-            return [...rest].reduce((acc, item) => {
-                return acc + item;
-            }, number);
+            return [...rest].reduce((acc, item) => acc + item, number);
         },
         dif: (...rest) => {
-            return [...rest].reduce((acc, item) => {
-                return acc - item;
-            }, number);
+            return [...rest].reduce((acc, item) => acc - item, number);
         },
         div: (...rest) => {
             return [...rest].reduce((acc, item) => {
@@ -122,9 +118,7 @@ function calculator(number = 0) {
             }, number);
         },
         mul: (...rest) => {
-            return [...rest].reduce((acc, item) => {
-                return acc * item;
-            }, number);
+            return [...rest].reduce((acc, item) => acc * item, number);
         },
     }
 }
