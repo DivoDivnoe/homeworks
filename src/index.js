@@ -1,82 +1,48 @@
-/* ДЗ 2 - работа с исключениями и отладчиком */
+/* ДЗ 3 - работа с массивами и объеектами */
 
 /*
  Задача 1:
- Функция принимает массив и фильтрующую фукнцию и должна вернуть true или false
- Функция должна вернуть true только если fn вернула true для всех элементов массива
- Необходимо выбрасывать исключение в случаях:
- - array не массив или пустой массив (с текстом "empty array")
- - fn не является функцией (с текстом "fn is not a function")
- Зарпещено использовать встроенные методы для работы с массивами
+ Напишите аналог встроенного метода forEach для работы с массивами
  */
-function isAllTrue(array, fn) {
-    if (!(array instanceof Array) || array.length === 0) {
-        throw new Error('empty array');
-    } else if (typeof fn !== 'function') {
-        throw new Error('fn is not a function');
-    }
-
+function forEach(array, fn) {
     const length = array.length;
 
     for (let i = 0; i < length; i++) {
-        if (!fn(array[i])) {
-            return false;
-        }
+        fn(array[i], i, array);
     }
-
-    return true;
 }
 
 /*
  Задача 2:
- Функция принимает массив и фильтрующую фукнцию и должна вернуть true или false
- Функция должна вернуть true если fn вернула true хотя бы для одного из элементов массива
- Необходимо выбрасывать исключение в случаях:
- - array не массив или пустой массив (с текстом "empty array")
- - fn не является функцией (с текстом "fn is not a function")
- Зарпещено использовать встроенные методы для работы с массивами
+ Напишите аналог встроенного метода map для работы с массивами
  */
-function isSomeTrue(array, fn) {
-    if (!(array instanceof Array) || array.length === 0) {
-        throw new Error('empty array');
-    } else if (typeof fn !== 'function') {
-        throw new Error('fn is not a function');
-    }
-
+function map(array, fn) {
+    const res = [];
     const length = array.length;
 
     for (let i = 0; i < length; i++) {
-        if (fn(array[i])) {
-            return true;
-        }
+        res.push(fn(array[i], i, array));
     }
 
-    return false;
+    return res;
 }
 
 /*
  Задача 3:
- Функция принимает заранее неизветсное количество аргументов, первым из которых является функция fn
- Функция должна поочередно запусти fn для каждого переданного аргумента (кроме самой fn)
- Функция должна вернуть массив аргументов, для которых fn выбросила исключение
- Необходимо выбрасывать исключение в случаях:
- - fn не является функцией (с текстом "fn is not a function")
+ Напишите аналог встроенного метода reduce для работы с массивами
  */
-function returnBadArguments(fn, ...rest) {
-    if (typeof fn !== 'function') {
-        throw new Error('fn is not a function');
+function reduce(array, fn, initial) {
+    const length = array.length;
+    let res = initial;
+    let firstIndex = 0;
+
+    if (typeof initial === 'undefined') {
+        res = array[0];
+        firstIndex = 1;
     }
 
-    rest = [...rest];
-    const length = rest.length;
-    let res = [];
-
-    for (let i = 0; i < length; i++) {
-        try {
-            fn(rest[i]);
-        } catch (e) {
-            res.push(rest[i]);
-        }
+    for (let i = firstIndex; i < length; i++) {
+        res = fn(res, array[i], i, array);
     }
 
     return res;
@@ -84,48 +50,82 @@ function returnBadArguments(fn, ...rest) {
 
 /*
  Задача 4:
- Функция имеет параметр number (по умолчанию - 0)
- Функция должна вернуть объект, у которого должно быть несколько методов:
- - sum - складывает number с переданными аргументами
- - dif - вычитает из number переданные аргументы
- - div - делит number на первый аргумент. Результат делится на следующий аргумент (если передан) и так далее
- - mul - умножает number на первый аргумент. Результат умножается на следующий аргумент (если передан) и так далее
-
- Количество передаваемых в методы аргументов заранее неизвестно
- Необходимо выбрасывать исключение в случаях:
- - number не является числом (с текстом "number is not a number")
- - какой-либо из аргументов div является нулем (с текстом "division by 0")
+ Функция принимает объект и имя свойства, которое необходиом удалить из объекта
+ Функция должна удалить указанное свойство из указанного объекта
  */
-function calculator(number = 0) {
-    if (typeof number !== 'number') {
-        throw new Error('number is not a number');
+function deleteProperty(obj, prop) {
+    delete obj[prop];
+}
+
+/*
+ Задача 5:
+ Функция принимает объект и имя свойства и возвращает true или false
+ Функция должна проверить существует ли укзаанное свойство в указанном объекте
+ */
+function hasProperty(obj, prop) {
+    return obj.hasOwnProperty(prop);
+}
+
+/*
+ Задача 6:
+ Функция должна получить все перечисляемые свойства объекта и вернуть их в виде массива
+ */
+function getEnumProps(obj) {
+    return Object.keys(obj);
+}
+
+/*
+ Задача 7:
+ Функция должна перебрать все свойства объекта, преобразовать их имена в верхний регистра и вернуть в виде массива
+ */
+function upperProps(obj) {
+    return Object.keys(obj).map((item) => item.toUpperCase());
+}
+
+/*
+ Задача 8 *:
+ Напишите аналог встроенного метода slice для работы с массивами
+ */
+function slice(array, from, to) {
+    const length = array.length;
+    const res = [];
+
+    if (from < -length || typeof from === 'undefined') {
+        from = 0;
+    } else if (from < 0) {
+        from += length;
     }
 
-    return {
-        sum: (...rest) => {
-            return [...rest].reduce((acc, item) => acc + item, number);
-        },
-        dif: (...rest) => {
-            return [...rest].reduce((acc, item) => acc - item, number);
-        },
-        div: (...rest) => {
-            return [...rest].reduce((acc, item) => {
-                if (!item) {
-                    throw new Error('division by 0');
-                }
-
-                return acc / item;
-            }, number);
-        },
-        mul: (...rest) => {
-            return [...rest].reduce((acc, item) => acc * item, number);
-        },
+    if (to > length || typeof to === 'undefined') {
+        to = length;
+    } else if (to < 0) {
+        to += length;
     }
+  
+    for (let i = from; i < to; i++) {
+        res.push(array[i]);
+    }
+
+    return res;
+}
+
+/*
+ Задача 9 *:
+ Функция принимает объект и должна вернуть Proxy для этого объекта
+ Proxy должен перехватывать все попытки записи значений свойств и возводить это значение в квадрат
+ */
+function createProxy(obj) {
+
 }
 
 export {
-    isAllTrue,
-    isSomeTrue,
-    returnBadArguments,
-    calculator
+    forEach,
+    map,
+    reduce,
+    deleteProperty,
+    hasProperty,
+    getEnumProps,
+    upperProps,
+    slice,
+    createProxy
 };
