@@ -25,16 +25,16 @@ let homeworkContainer = document.querySelector('#homework-container');
 function createDiv() {
     const div = document.createElement('DIV');
 
-    const getRandomNumber = (limit) => Math.floor(Math.random() * limit);
+    const getRandomNumber = (limit) => Math.floor(Math.random() * (limit + 1));
 
-    const getRandomColor = () => `rgb(${getRandomNumber(256)}, ${getRandomNumber(256)}, ${getRandomNumber(256)})`;
+    const getRandomColor = () => `rgb(${getRandomNumber(255)}, ${getRandomNumber(255)}, ${getRandomNumber(255)})`;
     const dimensions = {
-        width: getRandomNumber(101),
-        height: getRandomNumber(101)
+        width: getRandomNumber(100),
+        height: getRandomNumber(100)
     };
     const coords = {
-        left: getRandomNumber(101 - dimensions.width) + '%',
-        top: getRandomNumber(101 - dimensions.height) + '%'
+        left: getRandomNumber(100 - dimensions.width) + '%',
+        top: getRandomNumber(100 - dimensions.height) + '%'
     };
 
     div.style.position = 'absolute';
@@ -61,7 +61,7 @@ function addListeners(target) {
         };
 
         const mouseMoveHandler = (moveEvt) => {
-            let shift = {
+            const shift = {
                 x: moveEvt.clientX - startCoords.x,
                 y: moveEvt.clientY - startCoords.y
             };
@@ -71,7 +71,6 @@ function addListeners(target) {
                 x: moveEvt.clientX,
                 y: moveEvt.clientY
             };
-            console.log(startCoords.x);
 
             target.style.left = target.offsetLeft + shift.x + 'px';
             target.style.top = target.offsetTop + shift.y + 'px';
