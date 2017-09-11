@@ -33,16 +33,16 @@ function createDiv() {
         height: getRandomNumber(100)
     };
     const coords = {
-        left: getRandomNumber(100 - dimensions.width) + '%',
-        top: getRandomNumber(100 - dimensions.height) + '%'
+        left: getRandomNumber(100 - dimensions.width),
+        top: getRandomNumber(100 - dimensions.height)
     };
 
     div.style.position = 'absolute';
     div.style.backgroundColor = getRandomColor();
     div.style.width = dimensions.width + '%';
     div.style.height = dimensions.height + '%';
-    div.style.left = coords.left;
-    div.style.top = coords.top;
+    div.style.left = coords.left + '%';
+    div.style.top = coords.top + '%';
     div.classList.add('draggable-div');
 
     return div;
