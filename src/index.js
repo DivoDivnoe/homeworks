@@ -40,7 +40,9 @@ function skipDefault(eventName, target) {
  * @param {Element} target - элемент, на который нужно добавить обработчик
  */
 function emulateClick(target) {
-    target.onclick();
+    const event = new MouseEvent('click');
+
+    target.dispatchEvent(event);
 }
 
 /**
@@ -52,7 +54,7 @@ function emulateClick(target) {
  */
 function delegate(target, fn) {
     target.addEventListener('click', (evt) => {
-        if (evt.target.tagName = 'BUTTON') {
+        if (evt.target.tagName === 'BUTTON') {
             fn();
         }
     });
