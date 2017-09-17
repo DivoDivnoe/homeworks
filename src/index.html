@@ -1,23 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        html, body, #homework-container {
-            width: 100%;
-            height: 100%;
-        }
-
-        #homework-container {
-            position: relative;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>{{htmlWebpackPlugin.options.title}}</title>
 </head>
 <body>
-<div id="homework-container">
-    <button id="addDiv">Создать div</button>
-</div>
-<script src="dnd.js"></script>
+    <div id="homework-container">
+        <div id="loading-block">Загрузка...</div>
+        <div id="filter-block" style="display: none;">
+            <input type="text" placeholder="название города" id="filter-input">
+            
+            <div id="filter-result"></div>
+        </div>
+    </div>
+<script src="towns.js"></script>
 </body>
 </html>
