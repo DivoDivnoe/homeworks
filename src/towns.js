@@ -108,6 +108,7 @@ const errorHandler = () => {
     button.textContent = 'Повторить';
     button.addEventListener('click', () => {
         homeworkContainer.removeChild(div);
+        loadingBlock.style.display = 'block';
         townsPromise();
     });
     div.appendChild(button);
