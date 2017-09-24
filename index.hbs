@@ -1,9 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru-RU">
+
 <head>
-  <meta charset="UTF-8">
-  <title>{{htmlWebpackPlugin.options.title}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Friends Filter</title>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="https://use.fontawesome.com/7af34bb066.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+    <script src="https://vk.com/js/api/openapi.js?147" type="text/javascript"></script>
 </head>
+
 <body>
+    <div class="wrapper">
+        <div class="app">
+            <div class="app__title">
+                <div class="container">
+                    Выберите друзей
+                </div>
+            </div>
+            <div class="app__search-wrapper search">
+                <div class="container search__container">
+                    <div class="search__item search__item--left">
+                        <label class="search__label">
+                            <i class="fa fa-search fa-lg search__icon" aria-hidden="true"></i>
+                            <input type="text" class="search__field search__field--left" placeholder="Начните вводить имя друга">
+                        </label>
+                    </div>
+                    <div class="search__item search__item--right">
+                        <input type="text" class="search__field search__field--right" placeholder="Название">
+                    </div>
+                </div>
+            </div>
+            <section class="app__friends friends">
+                <div class="container friends__container">
+                    <section class="friends__column friends__column--left">
+                        <h2 class="friends__title">Друзья в списке</h2>
+                        <ul class="friends__list friends__list--all">
+
+                        </ul>
+                    </section>
+                    <section class="friends__column friends__column--right">
+                        <h2 class="friends__title">Ваши друзья</h2>
+                        <ul class="friends__list friends__list--custom">
+
+                        </ul>
+                    </section>
+                </div>
+            </section>
+            <div class="app__bottom">
+                <button class="app__save button">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script id="user-template" type="text/x-handlebars-template">
+        {{#each friends}}
+            <li class="friends__item">
+                <div class="friends__image">
+                    <img class="friends__pic" src="" alt="">
+                </div>
+                <div class="friends__name">{{first_name}} {{last_name}}</div>
+            </li>
+        {{/each}}
+    </script>
+
+    <script src="src/index.js"></script>
 </body>
+
 </html>

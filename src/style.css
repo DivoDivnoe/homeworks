@@ -1,0 +1,179 @@
+html,
+html::before,
+html::after {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html, body, .wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.42;
+    font-family: 'Fira Sans', Arial, sans-serif;
+    color: #ffffff;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #999999;
+}
+
+.container {
+    padding: 0 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    width: 620px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.app__title {
+    position: relative;
+    padding: 13px 0;
+    font-size: 16px;
+    background-color: #ff8663;
+}
+
+.app__title::before,
+.app__title::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    display: block;
+    width: 4px;
+    height: 18px;
+    background: #ffffff;
+    transform-origin: center;
+}
+
+.app__title::before {
+    transform: rotate(45deg);
+}
+
+.app__title::after {
+    transform: rotate(-45deg);
+}
+
+.app__search-wrapper {
+    background-color: #f0f0f0;
+}
+
+.search__item {
+    width: 50%;
+    padding: 10px 0;
+}
+
+.search__item--left {
+    padding-right: 10px;
+}
+
+.search__item--right {
+    padding-left: 10px;
+}
+
+.search__container {
+    display: flex;
+}
+
+.search__label {
+    position: relative;
+}
+
+.search__icon {
+    position: absolute;
+    top: 0;
+    left: 7px;
+    color: #9f9f9f;
+}
+
+.search__field {
+    width: 100%;
+    padding: 8px 15px;
+    font-weight: 300;
+    border: 0;
+    border-radius: 25px;
+}
+
+.search__field--left {
+    font-size: 12px;
+    color: #9f9f9f;
+    padding-left: 28px;
+    border-left: 1px solid #f0f0f0;
+}
+
+.app__friends {
+    display: flex;
+    width: 100%;
+    height: 355px;
+    color: #4f4f4f;
+    background-color: #ffffff;
+}
+
+.friends__container {
+    display: flex;
+    width: 100%;
+}
+
+.friends__title {
+    padding-top: 10px;
+    padding-bottom: 4px;
+    font-size: 12px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.friends__column {
+    width: 50%;
+}
+
+.friends__column--left {
+    border-right: 1px solid #f0f0f0;
+}
+
+.friends__list {
+
+}
+
+.friends__item {
+
+}
+
+.friends__item--custom {
+    
+}
+
+.app__bottom {
+    display: flex;
+    justify-content: flex-end;
+    padding: 7px;
+    background-color: #f0f0f0;
+}
+
+.button {
+    padding: 8px 17px 8px 15px;
+    font-weight: 300;
+    font-size: 12px;
+    color: #ffffff;
+    background-color: #ff8663;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
