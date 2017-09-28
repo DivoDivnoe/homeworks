@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Friends Filter</title>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500&amp;subset=cyrillic" rel="stylesheet">
-    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://use.fontawesome.com/7af34bb066.js"></script>
-    <script scr="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="https://vk.com/js/api/openapi.js?147" type="text/javascript"></script>
 </head>
 
@@ -30,7 +30,10 @@
                         </label>
                     </div>
                     <div class="search__item search__item--right">
-                        <input type="text" class="search__field search__field--right" placeholder="Название">
+                        <label class="search__label">
+                            <i class="fa fa-search fa-lg search__icon" aria-hidden="true"></i>
+                            <input type="text" class="search__field search__field--right" placeholder="Начните вводить имя друга">
+                        </label>
                     </div>
                 </div>
             </div>
@@ -38,15 +41,13 @@
                 <div class="container friends__container">
                     <section class="friends__column friends__column--left">
                         <h2 class="friends__title">Друзья в списке</h2>
-                        <ul class="friends__list friends__list--all">
+                        <ul class="friends__list friends__list--all" dropzone="move">
 
                         </ul>
                     </section>
                     <section class="friends__column friends__column--right">
                         <h2 class="friends__title">Ваши друзья</h2>
-                        <ul class="friends__list friends__list--custom">
-
-                        </ul>
+                        <ul class="friends__list friends__list--custom" dropzone="move"></ul>
                     </section>
                 </div>
             </section>
@@ -58,16 +59,16 @@
 
     <script id="user-template" type="text/x-handlebars-template">
         {{#each friends}}
-            <li class="friends__item">
+            <li class="friends__item" draggable="true" tabindex="0">
                 <div class="friends__image">
-                    <img class="friends__pic" src="" alt="">
+                    <img class="friends__picture" src="{{photo_100}}" alt="{{first_name}} {{last_name}}">
                 </div>
                 <div class="friends__name">{{first_name}} {{last_name}}</div>
+                <span class="friends__item-move"></span>
             </li>
         {{/each}}
     </script>
-
-    <script src="src/index.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
