@@ -1,10 +1,10 @@
-.idea/
-.vscode/
 .DS_Store
-*.lock
-!yarn.lock
+.idea
+*.ai
 *.log
-out/
-dist/
+*.pdf
+*.psd
+*.sublime*
+build/
 node_modules/
-coverage/
+Thumbs.db
